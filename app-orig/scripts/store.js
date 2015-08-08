@@ -1,0 +1,1 @@
+RnrollYeoman.ApplicationAdapter = DS.FixtureAdapter;

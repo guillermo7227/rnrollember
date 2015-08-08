@@ -1,0 +1,44 @@
+RnrollYeoman.SearchResultsRoute = Ember.Route.extend({
+    model: function(query) {
+        var url_artist = "http://developer.echonest.com/api/v4/artist/search?api_key=<3OYJ2HCGOYS56TX0T>&format=json&results=10&bucket=images&bucket=hotttnesss&bucket=biographies&bucket=id:musicbrainz";
+        var url_song = "http://developer.echonest.com/api/v4/song/search?api_key=<3OYJ2HCGOYS56TX0T>&format=json&results=10&bucket=id:7digital-US&bucket=audio_summary&bucket=song_hotttnesss&bucket=tracks&bucket=song_type";
+        return Promise.all([$.getJSON(url, { name: query.term }),
+                            $.getJSON(url, { title: query.term })])
+            .then(function(jsonArray) {
+                var artistResults = jsonArray[0].response.artists,
+                    songResults = jsonArray[1].response.songs,
+                    artists = [],
+                    songs = [],
+                    i = 0,
+                    entry = null;
+
+                for (i=0; i<artistResults.length; i++) {
+                    var entry = artistResults[i];
+                    artists.push(RnrollYeoman.Artist.create({
+                        id: i + 1,
+                        type: 'artist',
+                        name: entry.name,
+                        hotttnesss: entry.hotttnesss,
+                        enid: entry.id
+                    }));
+                }
+
+                entry = null;
+
+                for (i=0; i<songResults.length; i++) {
+                    entry = songResults[i];
+                    songs.push(RnrollYeoman.Song.create({
+                        id: i + 1,
+                        type: 'song',
+                        title: entry.title,
+                        enid: entry.id,
+                        artist_id: (entry.artist_id) ? entry.artist_id: null,
+                        artist_name: entry.artist_name,
+                        hotttnesss: entry.song_hotttnesss,
+                        audio_summary: entry.audio_summary
+                    }));
+                }
+            return {artists: artists, songs: songs}
+        });
+    }
+});
