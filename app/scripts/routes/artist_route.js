@@ -8,7 +8,7 @@ RnrollYeoman.ArtistRoute = Ember.Route.extend({
             });
         });
         */
-        var url = "http://developer.echonest.com/api/v4/artist/profile?api_key=<3OYJ2HCGOYS56TX0T>&format=json&bucket=biographies&bucket=blogs&bucket=familiarity&bucket=hotttnesss&bucket=images&bucket=news&bucket=reviews&bucket=terms&bucket=urls&bucket=video&bucket=id:musicbrainz",
+        var url = "http://developer.echonest.com/api/v4/artist/profile?api_key=3OYJ2HCGOYS56TX0T&format=json&bucket=biographies&bucket=blogs&bucket=familiarity&bucket=hotttnesss&bucket=images&bucket=news&bucket=reviews&bucket=terms&bucket=urls&bucket=video&bucket=id:musicbrainz",
             obj = {"id": params.enid};
 
         return Ember.$.getJSON(url,obj)

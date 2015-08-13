@@ -1,9 +1,12 @@
 RnrollYeoman.SongRoute = Ember.Route.extend({
     model: function(params) {
-        var url = "http://developer.echonest.com/api/v4/song/profile?api_key=<YOUR-API-KEY>&format=json&bucket=audio_summary&bucket=song_hotttnesss&bucket=tracks&bucket=song_type&bucket=id:7digital-US",
+
+        // find the song by ID
+        var url = "http://developer.echonest.com/api/v4/song/profile?api_key=3OYJ2HCGOYS56TX0T&format=json&bucket=audio_summary&bucket=song_hotttnesss&bucket=tracks&bucket=song_type&bucket=id:7digital-US",
             obj = {"id": params.enid};
 
         return Ember.$.getJSON(url, obj)
+            // returns Promise object
             .then(function(data) {
                 var entry = data.response.songs[0],
                     track = null;

@@ -1,9 +1,10 @@
 RnrollYeoman.SearchResultsRoute = Ember.Route.extend({
     model: function(query) {
-        var url_artist = "http://developer.echonest.com/api/v4/artist/search?api_key=<3OYJ2HCGOYS56TX0T>&format=json&results=10&bucket=images&bucket=hotttnesss&bucket=biographies&bucket=id:musicbrainz";
-        var url_song = "http://developer.echonest.com/api/v4/song/search?api_key=<3OYJ2HCGOYS56TX0T>&format=json&results=10&bucket=id:7digital-US&bucket=audio_summary&bucket=song_hotttnesss&bucket=tracks&bucket=song_type";
-        return Promise.all([$.getJSON(url, { name: query.term }),
-                            $.getJSON(url, { title: query.term })])
+        // var url_artist = "http://developer.echonest.com/api/v4/artist/search?api_key=3OYJ2HCGOYS56TX0T&format=json";
+        var url_artist = "http://developer.echonest.com/api/v4/artist/search?api_key=3OYJ2HCGOYS56TX0T&format=json&results=10&bucket=images&bucket=hotttnesss&bucket=biographies&bucket=id:musicbrainz";
+        var url_song = "http://developer.echonest.com/api/v4/song/search?api_key=3OYJ2HCGOYS56TX0T&format=json&results=10&bucket=id:7digital-US&bucket=audio_summary&bucket=song_hotttnesss&bucket=tracks&bucket=song_type";
+        return Promise.all([$.getJSON(url_artist, { name: query.term }),
+                            $.getJSON(url_song, { title: query.term })])
             .then(function(jsonArray) {
                 var artistResults = jsonArray[0].response.artists,
                     songResults = jsonArray[1].response.songs,

@@ -9,4 +9,4 @@ RnrollYeoman.Song = Ember.Object.extend({
     hotttnesss: null,
     track: null,
     types: null
-})
+});

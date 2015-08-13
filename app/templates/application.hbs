@@ -16,8 +16,10 @@
             <ul class="nav navbar-nav search-lookup">
                 <li class="search-group">
                     {{input action="submit" type="text" class="search-input" placeholder="Search for artists or song names"
-                        valueBinding="controller.searchTerms"}}
-                    <button {{action "submit"}} class="btn btn-primary"><i class="glyphicon glyphicon-play"></i></button>
+                      valueBinding="controller.searchTerms"}}
+                    <button {{action "submit"}} class="btn btn-primary">
+                      <i class="glyphicon glyphicon-play"></i>
+                    </button>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
